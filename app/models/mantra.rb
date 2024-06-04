@@ -1,0 +1,2 @@
+class Mantra < ApplicationRecord
+end
