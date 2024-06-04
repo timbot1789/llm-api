@@ -1,0 +1,2 @@
+module PokemonHoroscopesHelper
+end
