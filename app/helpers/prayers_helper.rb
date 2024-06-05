@@ -1,2 +1,2 @@
-module PrayerHelper
+module PrayersHelper
 end
