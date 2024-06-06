@@ -28,7 +28,7 @@ class PokemonHoroscopesController < ApplicationController
       @horoscope.save
     end
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @horoscope }
     end
   end
