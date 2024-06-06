@@ -11,7 +11,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body style="background-color: black;" data-theme="dark">
+    <div class="bg-animation">
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
+      <div id="stars4"></div>
+    </div>
     <%= yield %>
   </body>
 </html>
