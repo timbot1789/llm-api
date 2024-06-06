@@ -12,7 +12,6 @@ class PokemonHoroscopesController < ApplicationController
       date: Date.today,
       ip:
     )
-    puts horoscope
     if horoscope
       @horoscope = horoscope
     else
@@ -28,7 +27,10 @@ class PokemonHoroscopesController < ApplicationController
       )
       @horoscope.save
     end
-    render json: @horoscope
+    respond_to do |format|
+      format.html 
+      format.json { render json: @horoscope }
+    end
   end
 
   def key
@@ -68,7 +70,7 @@ class PokemonHoroscopesController < ApplicationController
     {
       name: poke['name'],
       body: ai_res["choices"].first["message"]["content"],
-      sprite: poke['sprites']['front_default'],
+      sprite: poke['sprites']['other']['official-artwork']['front_default'],
       url: "https://pokeapi.co/api/v2/pokemon/#{num}/"
     }
   end

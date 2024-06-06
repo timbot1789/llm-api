@@ -1,2 +1,32 @@
-<h1>PokemonHoroscopes#show</h1>
-<p>Find me in app/views/pokemon_horoscopes/show.html.erb</p>
+<turbo-frame id="horoscope">
+  <div id="horoscopeCard" class="card is-flex is-flex-direction-column m-2"> 
+    <div class="card-image is-align-self-center" style="width: 10rem">
+      <figure class="image is-128x128" >
+        <%= image_tag @horoscope.sprite %>
+      </figure>
+    </div>
+    <div class="card-content">
+      <h1 class="title is-1 has-text-centered"><%= @horoscope.name.capitalize%></h1>
+      <p class="content"><%= @horoscope.body %></p>
+    </div>
+  </div>
+
+  <style>
+    #horoscopeCard {
+      width: 40rem; 
+      animation: fadeInAnimation ease 5s
+    }
+    @keyframes fadeInAnimation {
+      0% {
+          opacity: 0;
+      }
+      30% {
+        opacity: 0;
+      }
+      100% {
+          opacity: 1;
+      }
+    }
+  </style>
+</turbo-frame>
+
