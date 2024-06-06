@@ -1,6 +1,6 @@
-<turbo-frame id="horoscope" style="width: 40%">
+<turbo-frame id="horoscope">
   <div style="background-color: transparent;" id="horoscopeCard" class="card is-flex is-flex-direction-column m-2"> 
-    <div class="card-image is-align-self-center" style="width: 10rem;">
+    <div class="card-image is-align-self-center">
       <figure class="image is-128x128" >
         <%= image_tag @horoscope.sprite %>
       </figure>
@@ -13,7 +13,7 @@
 
   <style>
     #horoscopeCard {
-      width: 40rem; 
+      max-width: 40rem; 
       animation: fadeInAnimation ease 5s
     }
     @keyframes fadeInAnimation {
