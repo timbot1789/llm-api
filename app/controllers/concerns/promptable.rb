@@ -2,12 +2,13 @@ require 'net/http'
 
 # Controllers using this concern are able to prompt AI models
 #
-module Promptable 
+module Promptable
   extend ActiveSupport::Concern
   included do
     def ai_uri
       URI.parse("https://api.openai.com/v1/chat/completions")
     end
+
     def prompt(pokemon_name)
       req = Net::HTTP::Post.new(ai_uri)
       request_body = {

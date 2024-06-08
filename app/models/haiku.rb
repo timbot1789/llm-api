@@ -1,3 +1,3 @@
 class Haiku < ApplicationRecord
-  include Pokeball 
+  include Pokeball
 end

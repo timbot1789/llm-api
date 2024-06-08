@@ -14,7 +14,7 @@ module Catchable
     def get_visitor_pokemon
       ip = request&.remote_ip || "127.0.0.1"
       visitor = Visitor.find_by(ip:)
-      visitor = Visitor.create(ip:) unless visitor 
+      visitor ||= Visitor.create(ip:)
       join = VisitorPokemon.find_by(visitor:, date: Date.today)
       unless join
         res = catch_pokemon
@@ -27,14 +27,15 @@ module Catchable
       end
       join
     end
+
     def show
       visitor_pokemon = get_visitor_pokemon
       record = self.class.model.find_by visitor_pokemon_id: visitor_pokemon.id
-      if record 
-        @record = record 
+      if record
+        @record = record
       else
-        body = prompt visitor_pokemon.pokemon.name 
-        @record = self.class.model.create(visitor_pokemon:, body:) 
+        body = prompt visitor_pokemon.pokemon.name
+        @record = self.class.model.create(visitor_pokemon:, body:)
       end
       respond_to do |format|
         format.html
