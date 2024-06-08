@@ -1,0 +1,33 @@
+  <div style="background-color: transparent;" id="recordCard" class="card is-flex is-flex-direction-column m-2"> 
+    <div class="card-image is-align-self-center">
+      <figure class="image is-128x128" >
+        <%= image_tag @record.pokemon.sprite %>
+      </figure>
+    </div>
+    <div class="card-content" style="background-color: black">
+      <h2 class="title is-2 has-text-centered">
+        <%= @record.pokemon.name.capitalize %>
+      </h2>
+      <p class="content"><%= @record.body %></p>
+    </div>
+  </div>
+
+  <style>
+    #recordCard {
+      box-shadow: unset;
+      max-width: 40rem; 
+      animation: fadeInAnimation ease 5s
+    }
+    @keyframes fadeInAnimation {
+      0% {
+          opacity: 0;
+      }
+      30% {
+        opacity: 0;
+      }
+      100% {
+          opacity: 1;
+      }
+    }
+  </style>
+

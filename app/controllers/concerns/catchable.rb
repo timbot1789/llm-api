@@ -27,5 +27,19 @@ module Catchable
       end
       join
     end
+    def show
+      visitor_pokemon = get_visitor_pokemon
+      record = self.class.model.find_by visitor_pokemon_id: visitor_pokemon.id
+      if record 
+        @record = record 
+      else
+        body = prompt visitor_pokemon.pokemon.name 
+        @record = self.class.model.create(visitor_pokemon:, body:) 
+      end
+      respond_to do |format|
+        format.html
+        format.json { render json: @record }
+      end
+    end
   end
 end
