@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_221756) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_07_233311) do
   create_table "affirmations", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.integer "visitor_pokemon_id", null: false
+    t.index ["visitor_pokemon_id"], name: "index_affirmations_on_visitor_pokemon_id"
+  end
+
+  create_table "horoscopes", force: :cascade do |t|
+    t.text "body"
+    t.integer "visitor_pokemon_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["visitor_pokemon_id"], name: "index_horoscopes_on_visitor_pokemon_id"
   end
 
   create_table "mantras", force: :cascade do |t|
@@ -23,17 +33,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_221756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.integer "visitor_pokemon_id", null: false
+    t.index ["visitor_pokemon_id"], name: "index_mantras_on_visitor_pokemon_id"
   end
 
-  create_table "pokemon_horoscopes", force: :cascade do |t|
-    t.text "body"
+  create_table "pokemons", force: :cascade do |t|
     t.string "url"
-    t.date "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "name"
     t.string "sprite"
-    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "prayers", force: :cascade do |t|
@@ -41,6 +50,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_221756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.integer "visitor_pokemon_id", null: false
+    t.index ["visitor_pokemon_id"], name: "index_prayers_on_visitor_pokemon_id"
   end
 
+  create_table "visitor_pokemons", force: :cascade do |t|
+    t.date "date"
+    t.integer "visitor_id", null: false
+    t.integer "pokemon_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pokemon_id"], name: "index_visitor_pokemons_on_pokemon_id"
+    t.index ["visitor_id"], name: "index_visitor_pokemons_on_visitor_id"
+  end
+
+  create_table "visitors", force: :cascade do |t|
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "affirmations", "visitor_pokemons"
+  add_foreign_key "horoscopes", "visitor_pokemons"
+  add_foreign_key "mantras", "visitor_pokemons"
+  add_foreign_key "prayers", "visitor_pokemons"
+  add_foreign_key "visitor_pokemons", "pokemons"
+  add_foreign_key "visitor_pokemons", "visitors"
 end

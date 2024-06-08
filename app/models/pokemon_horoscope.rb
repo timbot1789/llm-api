@@ -1,2 +1,0 @@
-class PokemonHoroscope < ApplicationRecord
-end

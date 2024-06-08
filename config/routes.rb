@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'pokemon_horoscopes/show'
+  get 'horoscopes/show'
   get 'mantras/show'
   get 'affirmations/show'
   get 'prayers/show'
@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "application#Welcome"
+  root "application#welcome"
 end

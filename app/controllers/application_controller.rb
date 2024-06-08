@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::Base
-  def Welcome; end
+  def welcome; end
 end
