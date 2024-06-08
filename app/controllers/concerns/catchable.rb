@@ -3,10 +3,8 @@
 module Catchable
   extend ActiveSupport::Concern
   included do
-    def pokemon(num = rand(500))
-      poke_uri = "https://pokeapi.co/api/v2/pokemon/#{num}/"
-      res = Net::HTTP.get(URI(poke_uri))
-      JSON.parse res
+    def catch_pokemon(num = rand(500))
+      JSON.parse Net::HTTP.get(URI("https://pokeapi.co/api/v2/pokemon/#{num}/"))
     end
   end
 end

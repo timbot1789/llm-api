@@ -1,6 +1,9 @@
 require 'net/http'
 
 class HoroscopesController < ApplicationController
+  include Catchable
+  include Promptable
+
   def self.make_prompt(pokemon_name)
      "write me a three sentence horoscope based on the pokemon #{pokemon_name}. Reference the pokemon's name in the response."
   end
@@ -33,14 +36,12 @@ class HoroscopesController < ApplicationController
   end
 
   def generate_horoscope
-    num = rand(500)
-    poke = pokemon(num)
-
-    ai_res = prompt(poke['name'])
+    pokemon = catch_pokemon
+    ai_res = prompt(pokemon['name'])
     {
-      name: poke['name'],
+      name: pokemon['name'],
       body: ai_res["choices"].first["message"]["content"],
-      sprite: poke['sprites']['other']['official-artwork']['front_default'],
+      sprite: pokemon['sprites']['other']['official-artwork']['front_default'],
       url: "https://pokeapi.co/api/v2/pokemon/#{num}/"
     }
   end
