@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_07_233311) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_08_055540) do
   create_table "affirmations", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -18,6 +18,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_233311) do
     t.date "date"
     t.integer "visitor_pokemon_id", null: false
     t.index ["visitor_pokemon_id"], name: "index_affirmations_on_visitor_pokemon_id"
+  end
+
+  create_table "haikus", force: :cascade do |t|
+    t.text "body"
+    t.integer "visitor_pokemon_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["visitor_pokemon_id"], name: "index_haikus_on_visitor_pokemon_id"
   end
 
   create_table "horoscopes", force: :cascade do |t|
@@ -71,6 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_233311) do
   end
 
   add_foreign_key "affirmations", "visitor_pokemons"
+  add_foreign_key "haikus", "visitor_pokemons"
   add_foreign_key "horoscopes", "visitor_pokemons"
   add_foreign_key "mantras", "visitor_pokemons"
   add_foreign_key "prayers", "visitor_pokemons"
