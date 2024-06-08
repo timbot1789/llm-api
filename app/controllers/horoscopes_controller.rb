@@ -9,40 +9,17 @@ class HoroscopesController < ApplicationController
   end
 
   def show
-    ip = request&.remote_ip || "127.0.0.1"
-    horoscope = Horoscope.find_by(
-      date: Date.today,
-      ip:
-    )
+    visitor_pokemon = get_visitor_pokemon
+    horoscope = Horoscope.find_by visitor_pokemon:
     if horoscope
       @horoscope = horoscope
     else
-      res = generate_horoscope
-      puts res
-      @horoscope = Horoscope.new(
-        date: Date.today,
-        ip:,
-        name: res[:name],
-        sprite: res[:sprite],
-        body: res[:body],
-        url: res[:url]
-      )
-      @horoscope.save
+      body = prompt visitor_pokemon.pokemon.name 
+      @horoscope = Horoscope.create(visitor_pokemon:, body:) 
     end
     respond_to do |format|
       format.html
       format.json { render json: @horoscope }
     end
-  end
-
-  def generate_horoscope
-    pokemon = catch_pokemon
-    ai_res = prompt(pokemon['name'])
-    {
-      name: pokemon['name'],
-      body: ai_res["choices"].first["message"]["content"],
-      sprite: pokemon['sprites']['other']['official-artwork']['front_default'],
-      url: "https://pokeapi.co/api/v2/pokemon/#{num}/"
-    }
   end
 end

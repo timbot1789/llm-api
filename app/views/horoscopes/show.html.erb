@@ -2,11 +2,13 @@
   <div style="background-color: transparent;" id="horoscopeCard" class="card is-flex is-flex-direction-column m-2"> 
     <div class="card-image is-align-self-center">
       <figure class="image is-128x128" >
-        <%= image_tag @horoscope.sprite %>
+        <%= image_tag @horoscope.pokemon.sprite %>
       </figure>
     </div>
     <div class="card-content" style="background-color: black">
-      <h2 class="title is-2 has-text-centered"><%= @horoscope.name.capitalize%></h1>
+      <h2 class="title is-2 has-text-centered">
+        <%= @horoscope.pokemon.name.capitalize %>
+      </h2>
       <p class="content"><%= @horoscope.body %></p>
     </div>
   </div>

@@ -12,7 +12,7 @@ module Promptable
         "model": "gpt-3.5-turbo",
         "messages": [{
           "role": "user",
-          "content": self.class.make_prompt pokemon_name
+          "content": self.class.make_prompt(pokemon_name)
         }],
         "temperature": 0.7
       }
@@ -20,9 +20,10 @@ module Promptable
 
       req["Content-Type"] = "application/json"
       req["Authorization"] = "Bearer #{ENV['PERSONAL_BLOG_KEY']}"
-      http = Net::HTTP.new(@uri.hostname, @uri.port)
+      http = Net::HTTP.new(ai_uri.hostname, ai_uri.port)
       http.use_ssl = true
-      JSON.parse http.request(req).body
+      res = JSON.parse http.request(req).body
+      res["choices"].first["message"]["content"]
     end
   end
 end
