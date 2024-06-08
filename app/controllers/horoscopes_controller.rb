@@ -1,4 +1,3 @@
-require 'net/http'
 
 class HoroscopesController < ApplicationController
   include Catchable
@@ -10,7 +9,7 @@ class HoroscopesController < ApplicationController
 
   def show
     visitor_pokemon = get_visitor_pokemon
-    horoscope = Horoscope.find_by visitor_pokemon:
+    horoscope = Horoscope.find_by visitor_pokemon_id: visitor_pokemon.id
     if horoscope
       @horoscope = horoscope
     else

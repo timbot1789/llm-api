@@ -1,3 +1,5 @@
+require 'net/http'
+
 # Controllers that implement this concern are able to "catch" pokemon;
 # i.e. generate new pokemon for the visitor if the visitor hasn't gotten one yet
 module Catchable
@@ -21,7 +23,7 @@ module Catchable
           sprite: res["sprites"]["other"]["official-artwork"]["front_default"],
           url: res["url"]
         )
-        join = VisitorPokemon.create(visitor:, pokemon:)
+        join = VisitorPokemon.create(visitor:, pokemon:, date: Date.today)
       end
       join
     end

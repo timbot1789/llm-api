@@ -1,3 +1,5 @@
+require 'net/http'
+
 # Controllers using this concern are able to prompt AI models
 #
 module Promptable 
