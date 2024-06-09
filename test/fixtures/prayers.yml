@@ -2,6 +2,8 @@
 
 one:
   body: MyText
+  visitor_pokemon: one
 
 two:
   body: MyText
+  visitor_pokemon: two

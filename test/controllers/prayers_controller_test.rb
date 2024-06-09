@@ -1,8 +1,8 @@
 require "test_helper"
 
-class PrayerControllerTest < ActionDispatch::IntegrationTest
+class PrayersControllerTest < ActionDispatch::IntegrationTest
   test "should get show" do
-    get prayer_show_url
+    get prayers_show_url
     assert_response :success
   end
 end
