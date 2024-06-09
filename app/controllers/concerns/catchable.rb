@@ -39,7 +39,8 @@ module Catchable
       end
       respond_to do |format|
         format.html
-        format.json { render json: @record }
+        format.json { render json: @record, :only => [:body], :include => { 
+          :pokemon => { :only => [:sprite, :name, :url]} }}
       end
     end
   end

@@ -5,4 +5,9 @@ class MantrasControllerTest < ActionDispatch::IntegrationTest
     get mantras_show_url
     assert_response :success
   end
+  test "should get json" do
+    get "#{mantras_show_url}.json"
+    json_res = JSON.parse response.body
+    assert(json_res["pokemon"]["name"])
+  end
 end

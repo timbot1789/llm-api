@@ -1,12 +1,15 @@
 require "test_helper"
 
-class PrayersControllerTest < ActionDispatch::IntegrationTest
+class HaikusControllerTest < ActionDispatch::IntegrationTest
+  # test "the truth" do
+  #   assert true
+  # end
   test "should get show" do
-    get prayers_show_url
+    get haikus_show_url
     assert_response :success
   end
   test "should get json" do
-    get "#{prayers_show_url}.json"
+    get "#{haikus_show_url}.json"
     json_res = JSON.parse response.body
     assert(json_res["pokemon"]["name"])
   end
