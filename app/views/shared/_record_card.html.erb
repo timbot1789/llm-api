@@ -1,4 +1,4 @@
-<div class="is-flex is-flex-direction-column is-align-items-center">
+<div class="is-flex is-flex-direction-column is-align-items-center" style="view-transition-name: fade">
   <div style="background-color: transparent;" id="recordCard" class="card is-flex is-flex-direction-column m-2"> 
     <h1 class="title is-2 has-text-centered">Your Daily <%= title %></h1>
     <div class="card-image is-align-self-center">
@@ -19,6 +19,17 @@
       box-shadow: unset;
       max-width: 40rem; 
       animation: fadeInAnimation ease 5s;
+    }
+    ::view-transition-old(fade) {
+      animation: fadeOutAnimation ease 1s;
+    }
+    @keyframes fadeOutAnimation {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
     }
     @keyframes fadeInAnimation {
       0% {
