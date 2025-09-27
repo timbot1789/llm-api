@@ -26,6 +26,8 @@ module Promptable
       http = Net::HTTP.new(ai_uri.hostname, ai_uri.port)
       http.use_ssl = true
       res = JSON.parse http.request(req).body
+      return if res["error"].present?
+
       res["choices"].first["message"]["content"]
     end
   end

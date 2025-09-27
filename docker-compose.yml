@@ -1,0 +1,28 @@
+services:
+  web:
+    tty: true
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "10"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api/:/srv/app
+      - bundle-cache:/bundle
+      - rails-data:/srv/app/data
+      - rails-log:/srv/app/log
+      - rails-tmp:/srv/app/tmp
+volumes:
+  bundle-cache:
+    driver: local
+  rails-data:
+    driver: local
+  rails-log:
+    driver: local
+  rails-tmp:
+    driver: local
