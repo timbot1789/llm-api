@@ -1,5 +1,18 @@
 #!/bin/bash -e
 
+# Remove a potentially pre-existing server pid for rails
+rm -f /srv/pids/server.pid
+
+gem install --no-document bundler:2.2.19
+
+bundle check || bundle install
+
+bundle binstubs --all --path="$BUNDLE_BIN"
+bundle exec bootsnap precompile app/ lib/
+
+# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+
 # If running the rails server then create or migrate existing database
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
   ./bin/rails db:prepare
