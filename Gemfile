@@ -72,3 +72,5 @@ group :test do
 end
 
 gem "activeagent", "~> 0.6.2"
+
+gem "ruby-openai", "~> 8.3"

@@ -33,7 +33,6 @@ RUN apt-get update -qq && \
 RUN mkdir -pv /srv/pids
 RUN mkdir -pv /srv/app/data
 RUN mkdir -pv /srv/app/log
-RUN mkdir -pv /srv/app/tmp
 RUN mkdir -pv /srv/app/public/system
 
 # Copy built artifacts: gems, application

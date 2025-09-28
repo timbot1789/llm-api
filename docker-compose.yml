@@ -16,7 +16,13 @@ services:
       - bundle-cache:/bundle
       - rails-data:/srv/app/data
       - rails-log:/srv/app/log
-      - rails-tmp:/srv/app/tmp
+    models:
+      - llm
+
+models:
+  llm:
+    model: ai/gemma3
+
 volumes:
   bundle-cache:
     driver: local
