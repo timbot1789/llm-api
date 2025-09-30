@@ -21,7 +21,7 @@ services:
 
 models:
   llm:
-    model: ai/gemma3
+    model: ai/smollm2
 
 volumes:
   bundle-cache:

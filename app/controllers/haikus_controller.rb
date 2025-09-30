@@ -3,7 +3,7 @@ class HaikusController < ApplicationController
   include Promptable
 
   def self.make_prompt(pokemon_name)
-    "write a haiku based on the pokemon #{pokemon_name}"
+    "write a haiku based on the pokemon #{pokemon_name}."
   end
 
   def self.model
