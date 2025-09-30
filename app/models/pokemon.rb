@@ -1,4 +1,3 @@
 class Pokemon < ApplicationRecord
-  has_many :visitor_pokemons
-  has_many :visitors, through: :visitor_pokemons
+  has_and_belongs_to_many :visitors
 end
